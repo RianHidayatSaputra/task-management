@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function register()
     {
         $validator = Validator::make(request()->all(), [
-            'name' => 'required|string',
+            'name' => 'required|string|min:3',
             'username' => 'required|min:3|max:15|unique:users',
             'password' => 'required|min:6|max:12'
         ]);
@@ -20,8 +20,11 @@ class AuthController extends Controller
             return response()->json(['message' => $validator->messages()], 400);
         }
 
-        $validator['password'] = bcrypt(request('password'));
-        $user = User::create($validator);
+        $user = User::create([
+            'name' => request('name'),
+            'username' => request('username'),
+            'password' => bcrypt(request('password')),
+        ]);
 
         if ($user) {
             return response()->json([
@@ -44,7 +47,9 @@ class AuthController extends Controller
             return response()->json(['message' => $validator->messages()], 400);
         }
 
-        if (! $token = auth()->attempt($validator)) {
+        $credentials = request(['username', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 

@@ -12,6 +12,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'user_id';
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -48,7 +51,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return (string) $this->user_id;
     }
 
     /**
