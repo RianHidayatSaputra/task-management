@@ -10,7 +10,17 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('users')->get();
+        $query = Task::with('users')->where('user_id', auth()->user()->user_id);
+
+        if (request()->has('status')) {
+            $query->where('status', request()->query('status'));
+        }
+
+        if (request()->has('deadline')) {
+            $query->whereDate('deadline', request()->query('deadline'));
+        }
+
+        $tasks = $query->get();
 
         return response()->json([
             'message' => 'Success!',
@@ -109,9 +119,9 @@ class TaskController extends Controller
 
         if ($task) {
 
-            $deletTask = Task::where('task_id', $task_id)->delete();
+            $deleteTask = Task::where('task_id', $task_id)->delete();
 
-            if ($deletTask) {
+            if ($deleteTask) {
 
                 return response()->json([
                     'message' => 'Success Delete Task!'
