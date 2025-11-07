@@ -1,4 +1,4 @@
-<img src="/login" alt="Banner">
+<img src="/screenshots/login.jpg" alt="Banner">
 
 <h1>Task Management App</h1>
 <p>Aplikasi ini saya buat menggunakan Next JS dan Laravel untuk memonitoring task karyawan. Aplikasi ini sudah memiliki fitur seperti: Login, Register, Task Management, Privacy Security, Filter, dan Sorting.</p>
