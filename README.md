@@ -30,7 +30,7 @@
   <li>Jalankan Next JSnya dengan perintah <code>npm run dev</code></li>
 </ol>
 
-<h3>Frontend</h3>
+<h3>Teknologi Yang Dipakai</h3>
 <ul>
   <li>Laravel 11</li>
   <li>Next JS 14</li>
@@ -47,7 +47,7 @@
 <ul>
   <li>user_id PK AI</li>
   <li>name VARCHAR(50)</li>
-  <li>username VARCHAR(50)</li>
+  <li>username VARCHAR(50) unique</li>
   <li>password VARCHAR(255)</li>
 </ul>
 
