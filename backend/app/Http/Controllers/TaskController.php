@@ -31,7 +31,6 @@ class TaskController extends Controller
     public function store()
     {
         $validator = Validator::make(request()->all(), [
-            'user_id' => 'required',
             'title' => 'required|string|min:3',
             'description' => 'required',
             'status' => 'required|in:todo,in_progress,done',
@@ -43,7 +42,7 @@ class TaskController extends Controller
         }
 
         $task = Task::create([
-            'user_id' => request('user_id'),
+            'user_id' => auth()->user()->user_id,
             'title' => request('title'),
             'description' => request('description'),
             'status' => request('status'),
@@ -78,7 +77,6 @@ class TaskController extends Controller
     public function update($task_id)
     {
         $validator = Validator::make(request()->all(), [
-            'user_id' => 'required',
             'title' => 'required|string|min:3',
             'description' => 'required',
             'status' => 'required|in:todo,in_progress,done',
@@ -97,7 +95,6 @@ class TaskController extends Controller
         }
 
         $task = Task::where('task_id', $task_id)->update([
-            'user_id' => request('user_id'),
             'title' => request('title'),
             'description' => request('description'),
             'status' => request('status'),
