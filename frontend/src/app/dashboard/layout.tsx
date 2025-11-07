@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <main className="p-5 overflow-x-scroll">{children}</main>
+        <main className="p-5 overflow-x-auto">{children}</main>
       </div>
     </div>
   )
