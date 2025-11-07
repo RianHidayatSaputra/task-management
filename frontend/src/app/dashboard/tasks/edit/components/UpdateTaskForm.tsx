@@ -48,7 +48,7 @@ export default function UpdateTaskForm({
 
   return (
     <div className="w-[40%] p-10">
-      <h1 className="text-2xl text-center mb-7 font-bold">Add Task</h1>
+      <h1 className="text-2xl text-center mb-7 font-bold">Edit Task</h1>
 
       {state.message === "Update Task Successfully!" && (
         <p className="text-green-500 text-center mt-5 font-medium">
